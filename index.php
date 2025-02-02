@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Custom Page Widgets
  * Description: Supplement plugin for allowing widgets on specific pages like "About Us" and "Almomtaz" to work like homepage widgets.
- * Version: 1.0.3
+ * Version: 1.0.4
  * Author: mzughbor
  */
 
@@ -46,36 +46,24 @@ function cpw_get_widget_area_id() {
     return false;
 }
 
-// Insert widgets into page content
-function cpw_insert_widgets_into_content($content) {
-    $widget_area_id = cpw_get_widget_area_id();
-    if (!$widget_area_id || !is_main_query()) {
-        return $content;
-    }
-
-    ob_start();
-    
-    // Open main container like theme does
-    echo '<div class="widget-area-full">';
-    echo '<div class="container">';
-    echo '<div class="row">';
-    echo '<div class="col-xs-12">';
-    
-    // Add widgets
-    dynamic_sidebar($widget_area_id);
-    
-    // Close containers
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-    echo '</div>';
-    
-    $widget_content = ob_get_clean();
-
-    // Add the widgets after the main content
-    return $content . $widget_content;
+// Add custom page template
+function cpw_add_page_template($templates) {
+    $templates['template-fullwidth-widgets.php'] = __('Full Width Widgets Template', 'cpw');
+    return $templates;
 }
-add_filter('the_content', 'cpw_insert_widgets_into_content');
+add_filter('theme_page_templates', 'cpw_add_page_template');
+
+// Load template from plugin
+function cpw_load_plugin_template($template) {
+    if (is_page()) {
+        $template_file = get_post_meta(get_the_ID(), '_wp_page_template', true);
+        if ('template-fullwidth-widgets.php' === $template_file) {
+            $template = plugin_dir_path(__FILE__) . 'templates/template-fullwidth-widgets.php';
+        }
+    }
+    return $template;
+}
+add_filter('template_include', 'cpw_load_plugin_template');
 
 // Add theme-matching styles
 function cpw_add_custom_styles() {
@@ -86,6 +74,7 @@ function cpw_add_custom_styles() {
             .widget-area-full {
                 padding: 40px 0;
                 clear: both;
+                background: #fff;
             }
             .widget-area-full .widget {
                 margin-bottom: 40px;
