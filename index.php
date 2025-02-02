@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Custom Page Widgets
  * Description: Supplement plugin for allowing widgets on specific pages like "About Us" and "Almomtaz" to work like homepage widgets.
- * Version: 1.0.8
+ * Version: 1.0.9
  * Author: mzughbor
  */
 
