@@ -1,3 +1,76 @@
-.yp-widget.widget-padded.sharekah-widget.widget-area-full {
+.yp-widget.widget-padded.sharekah-widget.widget-area-full:not(.yp-widget.widget-padded.sharekah-widget.widget-area-full ~ .yp-widget.widget-padded.sharekah-widget.widget-area-full) {
     background-color: #242021;
+}
+
+.widget-wrap.wrap-extra-pad.mzmt {
+	margin: 0;
+}
+
+#text-5>.section-title {
+    text-align: start!important;
+}
+
+.yp-widget.sharekah-widget.widget-area-full:nth-of-type(3) {
+    background-color: #4bb5e7;
+}
+
+@media (min-width: 992px) {
+    .mr80web {
+        margin-right: 80px;
+    }
+}
+
+.yp-widget.sharekah-widget.widget-area-full:nth-of-type(5) {
+    background-color: #242021;
+}
+
+#text-6>.section-title {
+    text-align: start!important;
+}
+
+.yp-widget.sharekah-widget.widget-area-full:nth-of-type(7) {
+    background-color: #4bb5e7;
+}
+
+#at-callout-3>.section-title {
+    text-align: start!important;
+}
+
+
+#at-callout-3 {
+    position: relative; /* Reference for absolute positioning */
+}
+
+#at-callout-3::before,
+#at-callout-3::after {
+    content: "";
+    border-radius: 50%;
+    position: absolute;
+    z-index: -1; /* Places them behind the text */
+}
+
+#at-callout-3::before {
+    width: 170px; /* Bigger circle */
+    height: 170px;
+    background-color: #5dbce9ad;
+    top: -120px; /* Adjust position */
+    left: 92%; /* Shift it slightly */
+    transform: translateX(-50%);
+}
+
+#at-callout-3::after {
+    width: 135px; /* Smaller circle */
+    height: 135px;
+    background-color: #93a0ac7d;
+    top: -50px; /* Moves it slightly lower */
+    left: 88%; /* Offset from the first circle */
+    transform: translateX(-50%);
+}
+
+/*  Media Query for Mobile (Under 543px) */
+@media (max-width: 543px) {
+    #at-callout-3::before {
+        top: 35px; 
+        left: 105%; /* Move blue circle more to the right */
+    }
 }
