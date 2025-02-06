@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Custom Page Widgets
  * Description: Supplement plugin for allowing widgets on specific pages like "About Us" and "Almomtaz" to work like homepage widgets.
- * Version: 1.0.9
+ * Version: 1.0.10
  * Author: mzughbor
  */
 
@@ -123,6 +123,14 @@ function cpw_enqueue_page_styles() {
             array(),
             '1.0.0'
         );
+    } else (is_page() && get_post_field('post_name', get_the_ID()) === 'almomtaz') {
+        wp_enqueue_style(
+            'cpw-about-us-styles',
+            plugins_url('css/almomtaz.css', __FILE__),
+            array(),
+            '1.0.0'
+        );
     }
+
 }
 add_action('wp_enqueue_scripts', 'cpw_enqueue_page_styles');
